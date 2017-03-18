@@ -1,5 +1,3 @@
-console.log("Up and running!");
-
 var cards = [
 	{
 		rank: "queen",
@@ -24,6 +22,7 @@ var cards = [
 ];
 
 var cardsInPlay = [];
+var gameBoard = document.getElementById('game-board');
 
 // Create a function to check for a match
 var checkForMatch = function() {
@@ -41,11 +40,13 @@ var checkForMatch = function() {
 var flipCard = function() {
 
 	var cardId = this.getAttribute('data-id');
-	console.log("User flipped " + cards[cardID].rank);
-	cardsInPlay.push(cards[cardID].rank);
+	this.setAttribute('src', cards[cardId].cardImage);
 
-	console.log(cards[cardID].cardImage);
-	console.log(cards[cardID].suit);
+	console.log("User flipped " + cards[cardId].rank);
+	console.log(cards[cardId].cardImage);
+	console.log(cards[cardId].suit);
+
+	cardsInPlay.push(cards[cardId].rank);
 
 	checkForMatch();
 	
@@ -57,13 +58,26 @@ var createBoard = function() {
 		cardElement.setAttribute('src', 'images/back.png');
 		cardElement.setAttribute('data-id', i);
 		cardElement.addEventListener('click', flipCard);
-		document.getElementById('game-board').appendChild(cardElement);
+		gameBoard.appendChild(cardElement);
 	}
 }
 
 createBoard();
 
-sdflkj
+var resetBoard = function () {
+	document.getElementById('game-board').innerHTML = ' ';
+	//cardsInPlay[];
+	//createBoard();
+}
+
+var resetButton = document.getElementsByTagName('button');
+resetButton.addEventListener('click', resetBoard);
+
+
+
+
+
+
 
 
 
